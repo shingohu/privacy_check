@@ -3,6 +3,9 @@ version '1.0'
 
 buildscript {
     repositories {
+        maven {
+            url 'https://jitpack.io'
+        }
         google()
         mavenCentral()
         maven {
@@ -19,6 +22,9 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
+        maven {
+            url 'https://jitpack.io'
+        }
         google()
         mavenCentral()
         maven {

@@ -1,5 +1,5 @@
 # ninja log v5
-1	119	1662363177	CMakeFiles/epic.dir/fake_dlfcn.cpp.o	d85eaa5a64b8831d
-1	272	1662363177	CMakeFiles/epic.dir/art.cpp.o	7af93e5c0e64fabf
-0	279	1662363177	CMakeFiles/epic.dir/epic.cpp.o	d42354447a880888
-279	328	1662363177	/Users/mac_bigsur/develop/HT/grammarcheckerpackage/grammarchecker/build/privacy_check/intermediates/cmake/debug/obj/armeabi-v7a/libepic.so	ed5a60d922be2735
+1	244	1662371018	CMakeFiles/epic.dir/fake_dlfcn.cpp.o	c59d97c505a17f0b
+4	375	1662371018	CMakeFiles/epic.dir/art.cpp.o	fe63cd403ca0553c
+0	382	1662371018	CMakeFiles/epic.dir/epic.cpp.o	cdabacbe94dae338
+382	471	1662371019	/Users/mac_bigsur/develop/HT/englishstories/build/privacy_check/intermediates/cmake/debug/obj/armeabi-v7a/libepic.so	90e7060c9a284633

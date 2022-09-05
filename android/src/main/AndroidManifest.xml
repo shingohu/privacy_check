@@ -8,7 +8,7 @@
 
         <provider
             android:name="com.shingo.lib.epic.PrivacyMethodHookProvider"
-            android:authorities="PrivacyMethodHookProvider"
+            android:authorities="${applicationId}.PrivacyMethodHookProvider"
             android:enabled="true"
             android:exported="false" />
 

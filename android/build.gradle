@@ -26,9 +26,9 @@ rootProject.allprojects {
             name 'Google'
         }
 
-//        flatDir {
-//            dirs project(':privacy_check').file('libs')
-//        }
+        flatDir {
+            dirs project(':privacy_check').file('libs')
+        }
 
     }
 }
@@ -73,11 +73,11 @@ android {
 
 
     dependencies {
-        implementation fileTree(dir: 'libs', include: ['*.?ar'])
+        //implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation "com.github.tiann:FreeReflection:3.1.0"
         ///原仓库jcenter已经弃用,这里直接依赖aar
         //api 'me.weishu.exposed:exposed-xposedapi:0.4.6'
-        //api(name: 'exposed-xposedapi-0.4.6', ext: 'aar')
+        api(name: 'exposed-xposedapi-0.4.6', ext: 'aar')
 
     }
 }

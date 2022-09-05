@@ -3,6 +3,7 @@
     "className": "android.provider.Settings$Secure",
     "methodName": "getString",
     "message": "获取ANDROID_ID",
+    "filter": "android_id",
     "parameterTypes": [
       "android.content.ContentResolver",
       "java.lang.String"

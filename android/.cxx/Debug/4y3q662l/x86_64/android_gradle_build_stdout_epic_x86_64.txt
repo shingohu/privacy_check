@@ -1,12 +1,2 @@
 ninja: Entering directory `/Users/mac_bigsur/develop/My/privacy_check/android/.cxx/Debug/4y3q662l/x86_64'
-[1/4] Building CXX object CMakeFiles/epic.dir/fake_dlfcn.cpp.o
-[2/4] Building CXX object CMakeFiles/epic.dir/art.cpp.o
-[3/4] Building CXX object CMakeFiles/epic.dir/epic.cpp.o
-/Users/mac_bigsur/develop/My/privacy_check/android/src/main/cpp/epic.cpp:78:1: warning: control reaches end of non-void function [-Wreturn-type]
-};
-^
-/Users/mac_bigsur/develop/My/privacy_check/android/src/main/cpp/epic.cpp:172:34: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
-    suspendAll(scopedSuspendAll, "stop_jit");
-                                 ^
-2 warnings generated.
-[4/4] Linking CXX shared library /Users/mac_bigsur/develop/My/privacy_check/example/build/privacy_check/intermediates/cxx/Debug/4y3q662l/obj/x86_64/libepic.so
+ninja: no work to do.

@@ -1,0 +1,5 @@
+# ninja log v5
+0	77	1662363178	CMakeFiles/epic.dir/fake_dlfcn.cpp.o	857bb6728330329d
+0	238	1662363178	CMakeFiles/epic.dir/epic.cpp.o	5e544991483dfde
+0	238	1662363178	CMakeFiles/epic.dir/art.cpp.o	982c24067f7c00f9
+238	281	1662363178	/Users/mac_bigsur/develop/HT/grammarcheckerpackage/grammarchecker/build/privacy_check/intermediates/cmake/debug/obj/x86_64/libepic.so	b56845d64d956246

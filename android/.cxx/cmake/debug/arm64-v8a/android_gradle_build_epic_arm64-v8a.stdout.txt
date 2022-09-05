@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/mac_bigsur/develop/My/privacy_check/android/.cxx/cmake/debug/arm64-v8a'
+ninja: no work to do.

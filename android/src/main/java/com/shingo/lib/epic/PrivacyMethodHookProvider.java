@@ -34,7 +34,7 @@ public class PrivacyMethodHookProvider extends ContentProvider {
 
         try {
             InputStream inputStream = null;
-            Log.e(TAG, "start read privacy methods hook data from 'assets/privacy_methods.json");
+            Loge(TAG, "start read privacy methods hook data from 'assets/privacy_methods.json");
             inputStream = context.getResources().getAssets().open("privacy_methods.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder result = new StringBuilder();
@@ -48,7 +48,7 @@ public class PrivacyMethodHookProvider extends ContentProvider {
                     result.append(line);
                 }
             }
-            Log.e(TAG, "privacy methods hook data =>" + result);
+            Loge(TAG, "privacy methods hook data =>" + result);
             JSONArray jo = new JSONArray(result.toString());
             List<PrivacyMethodHookData> list = new ArrayList<PrivacyMethodHookData>();
 
@@ -125,25 +125,38 @@ public class PrivacyMethodHookProvider extends ContentProvider {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
-                        Log.e(TAG, "====================================================================================================================");
-                        Log.e(TAG, "Hooked Message:" + message);
-                        Log.e(TAG, "Hooked Method:" + className + "." + methodName);
+                        Loge(TAG, "====================================================================================================================");
+                        Loge(TAG, "Hooked Message:" + message);
+                        Loge(TAG, "Hooked Method:" + className + "." + methodName);
                         String parameter = Arrays.toString(param.args);
-                        Log.e(TAG, "Hooked Method Parameter:" + parameter);
+                        Loge(TAG, "Hooked Method Parameter:" + parameter);
                         if (parameter != null && filter != null && parameter.contains(filter)) {
-                            Log.e(TAG, "Hooked Method Filter:" + filter);
+                            Loge(TAG, "Hooked Method Filter:" + filter);
                         }
-                        Log.e(TAG, "Hooked Method Stack", new Throwable());
-                        Log.e(TAG, "====================================================================================================================");
+                        Loge(TAG, "Hooked Method Stack", new Throwable());
+                        Loge(TAG, "====================================================================================================================");
                     }
                 };
                 DexposedBridge.findAndHookMethod(lintClass, methodName, parameterTypesAndCallback);
             } catch (Exception e) {
-                Log.e(TAG, "hookPrivacyMethod Exception:" + e);
+                Loge(TAG, "hookPrivacyMethod Exception:" + e);
             }
         }
 
 
+    }
+
+
+    private void Loge(String tag, String message) {
+        if (BuildConfig.DEBUG) {
+            Log.e(tag, message);
+        }
+    }
+
+    private void Loge(String tag, String message, Throwable throwable) {
+        if (BuildConfig.DEBUG) {
+            Log.e(tag, message, throwable);
+        }
     }
 
 

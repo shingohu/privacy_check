@@ -1,0 +1,83 @@
+group 'com.shingo.privacy_check'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+
+//        flatDir {
+//            dirs project(':privacy_check').file('libs')
+//        }
+
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11"
+                // arguments "-DANDROID_TOOLCHAIN=gcc"
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path 'src/main/cpp/CMakeLists.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+        debug {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.?ar'])
+        implementation "com.github.tiann:FreeReflection:3.1.0"
+        ///原仓库jcenter已经弃用,这里直接依赖aar
+        //api 'me.weishu.exposed:exposed-xposedapi:0.4.6'
+        //api(name: 'exposed-xposedapi-0.4.6', ext: 'aar')
+
+    }
+}

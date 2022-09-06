@@ -1,0 +1,7 @@
+Executable : /Users/mac_bigsur/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/Users/mac_bigsur/develop/My/privacy_check/android/.cxx/cmake/release/armeabi-v7a
+epic
+jvmArgs : 
+

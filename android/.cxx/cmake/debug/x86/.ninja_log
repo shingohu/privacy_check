@@ -1,5 +1,0 @@
-# ninja log v5
-1	142	1662371019	CMakeFiles/epic.dir/fake_dlfcn.cpp.o	52cc2bc148e00e6a
-1	309	1662371019	CMakeFiles/epic.dir/art.cpp.o	f6087cc298d8e28
-1	336	1662371019	CMakeFiles/epic.dir/epic.cpp.o	9e109dc898c15b0d
-336	419	1662371019	/Users/mac_bigsur/develop/HT/englishstories/build/privacy_check/intermediates/cmake/debug/obj/x86/libepic.so	562fa41dcf34c4cd

@@ -1,6 +1,6 @@
 # privacy_check
 
-### 国内Android市场隐私协议相关审核越来越严格,在隐私协议弹出之前,禁止调用与隐私协议相关的Api,比如ANDROID_ID,IMEI等,通常我们可以通过业务逻辑延后初始化一些已知的涉及隐私协议的SDK或者插件,但是部分插件或者SDK可能会在启动时候自动调用,这样往往的情况我们往往无法注意到,等到应用商店被拒之后也很难排查,于是基于[epic](https://github.com/tiann/epic),做了这个插件,无需侵入任何业务代码,并且不会带到线上,基本原理是读取配置文件(assets/privacy_methods.json),hookd对应的方法,当该方法调用的时候,控制台输出相关信息和调用栈,可比对应用商店被拒报告来查看一致。由于本人项目中暂时只遇到了ANDROID_ID被拒的情况,demo仅仅演示了获取ANDROID_ID的情况,可通过添加配置文件检查其它Api的获取
+### 国内Android市场隐私协议相关审核越来越严格,在隐私协议弹出之前,禁止调用与隐私协议相关的Api,比如ANDROID_ID,IMEI等,通常我们可以通过业务逻辑延后初始化一些已知的涉及隐私协议的SDK或者插件,但是部分插件或者SDK可能会在启动时候自动调用,这样往往的情况我们往往无法注意到,等到应用商店被拒之后也很难排查,于是基于[epic](https://github.com/tiann/epic),做了这个插件,无需侵入任何业务代码,基本原理是读取配置文件(assets/privacy_methods.json),hookd对应的方法,当该方法调用的时候,控制台输出相关信息和调用栈,可比对应用商店被拒报告来查看一致。由于本人项目中暂时只遇到了ANDROID_ID被拒的情况,demo仅仅演示了获取ANDROID_ID的情况,可通过添加配置文件检查其它Api的获取
 
 
 ## Depend on it
@@ -11,6 +11,8 @@ dev_dependencies:
   	git:
 	 url:git://github.com/shingo/privacy_check
 ```
+Remove this dependency when the check is complete
+
 ## Usage
 #1、Add custom check configuration in assets/privacy_methods.json
 ```
@@ -64,3 +66,4 @@ parameterTypes(parameterTypes): hook class method parameter types
 2022-09-05 15:16:11.689 17777-17777/com.shingo.privacy_check_example E/PrivacyMethodHook: ====================================================================================================================
 
 ```
+

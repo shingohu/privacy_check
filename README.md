@@ -8,8 +8,7 @@ Add this to your package's pubspec.yaml file:
 ```
 dev_dependencies:
   privacy_check: 
-  	git:
-	 url:git://github.com/shingo/privacy_check
+  	git: "http://github.com/shingo/privacy_check.git"
 ```
 Remove this dependency when the check is complete
 

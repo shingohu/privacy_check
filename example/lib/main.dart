@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:android_id/android_id.dart';
+import 'package:device_information/device_information.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String androidId = 'Unknown';
+  String imei = 'Unknown';
 
   @override
   void initState() {
@@ -34,6 +37,12 @@ class _MyAppState extends State<MyApp> {
         setState(() {});
       });
     }
+    Permission.phone.request().isGranted.then((value) async {
+      if (value) {
+        imei = await DeviceInformation.deviceIMEINumber;
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -44,7 +53,12 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('androidId is : $androidId\n'),
+          child: Column(
+            children: [
+              Text('androidId is : $androidId\n'),
+              Text('imei is : $imei\n'),
+            ],
+          ),
         ),
       ),
     );

@@ -8,5 +8,15 @@
       "android.content.ContentResolver",
       "java.lang.String"
     ]
+  },
+  {
+    "className": "android.telephony.TelephonyManager",
+    "methodName": "getImei",
+    "message": "获取IMEI"
+  },
+  {
+    "className": "android.telephony.TelephonyManager",
+    "methodName": "getDeviceId",
+    "message": "获取IMEI"
   }
 ]

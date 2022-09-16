@@ -18,5 +18,10 @@
     "className": "android.telephony.TelephonyManager",
     "methodName": "getDeviceId",
     "message": "获取IMEI"
+  },
+  {
+    "className": "android.os.Build",
+    "methodName": "getSerial",
+    "message": "获取getSerial"
   }
 ]

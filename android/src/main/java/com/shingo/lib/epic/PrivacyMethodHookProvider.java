@@ -124,7 +124,11 @@ public class PrivacyMethodHookProvider extends ContentProvider {
                     super.beforeHookedMethod(param);
                     Loge(TAG, "====================================================================================================================");
                     Loge(TAG, "Hooked Message:" + message);
-                    Loge(TAG, "Hooked Method:" + className + "." + methodName);
+                    if (isHookConstructor) {
+                        Loge(TAG, "Hooked Constructor:" + className);
+                    } else {
+                        Loge(TAG, "Hooked Method:" + className + "." + methodName);
+                    }
                     String parameter = Arrays.toString(param.args);
                     Loge(TAG, "Hooked Method Parameter:" + parameter);
                     if (parameter != null && filter != null && parameter.contains(filter)) {

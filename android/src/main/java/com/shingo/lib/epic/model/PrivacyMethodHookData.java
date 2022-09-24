@@ -6,8 +6,10 @@ public class PrivacyMethodHookData {
 
     ///hook的包名 必传
     public String className;
-    ///hook的方法  必传
+    ///hook的方法  如果是构造非必传,如果不是构造,必传
     public String methodName;
+    ///是否hook构造函数
+    public boolean isHookConstructor ;
 
     ///hook信息 可选
     public String message;
@@ -18,12 +20,13 @@ public class PrivacyMethodHookData {
     public String filter;
 
 
-    public PrivacyMethodHookData(String className, String methodName, List<Class> parameterTypes, String message, String filter) {
+    public PrivacyMethodHookData(String className, String methodName,boolean isHookConstructor, List<Class> parameterTypes, String message, String filter) {
         this.className = className;
         this.methodName = methodName;
         this.parameterTypes = parameterTypes;
         this.message = message;
         this.filter = filter;
+        this.isHookConstructor = isHookConstructor;
     }
 
 }

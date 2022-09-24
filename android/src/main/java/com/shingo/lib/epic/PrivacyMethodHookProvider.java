@@ -63,7 +63,17 @@ public class PrivacyMethodHookProvider extends ContentProvider {
                 }
 
                 String className = jo.getJSONObject(i).getString("className");
-                String methodName = jo.getJSONObject(i).getString("methodName");
+
+
+                String methodName = null;
+                if (jo.getJSONObject(i).has("methodName")) {
+                    methodName = jo.getJSONObject(i).getString("methodName");
+                }
+
+                boolean isHookConstructor = false;
+                if (jo.getJSONObject(i).has("hookConstructor")) {
+                    isHookConstructor = jo.getJSONObject(i).getBoolean("hookConstructor");
+                }
 
 
                 String message = null;
@@ -80,6 +90,7 @@ public class PrivacyMethodHookProvider extends ContentProvider {
                 list.add(new PrivacyMethodHookData(
                         className,
                         methodName,
+                        isHookConstructor,
                         typeList,
                         message,
                         filter
@@ -99,45 +110,47 @@ public class PrivacyMethodHookProvider extends ContentProvider {
     private void hookPrivacyMethod(PrivacyMethodHookData entity) {
 
 
-        if (entity.className != null && !entity.className.isEmpty() && entity.methodName != null && !entity.methodName.isEmpty()) {
+        if (entity.className != null && !entity.className.isEmpty()) {
             String className = entity.className;
             String methodName = entity.methodName;
+            boolean isHookConstructor = entity.isHookConstructor;
             String message = entity.message;
             String filter = entity.filter;
             List<Class> parameterTypes = entity.parameterTypes;
+
+            XC_MethodHook hook = new XC_MethodHook() {
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    super.beforeHookedMethod(param);
+                    Loge(TAG, "====================================================================================================================");
+                    Loge(TAG, "Hooked Message:" + message);
+                    Loge(TAG, "Hooked Method:" + className + "." + methodName);
+                    String parameter = Arrays.toString(param.args);
+                    Loge(TAG, "Hooked Method Parameter:" + parameter);
+                    if (parameter != null && filter != null && parameter.contains(filter)) {
+                        Loge(TAG, "Hooked Method Filter:" + filter);
+                    }
+                    Loge(TAG, "Hooked Method Stack", new Throwable());
+                    Loge(TAG, "====================================================================================================================");
+                }
+            };
             try {
                 Class<?> lintClass = Class.forName(className);
-
-
-                Object[] parameterTypesAndCallback;
-
-
-                if (parameterTypes != null && parameterTypes.size() > 0) {
-                    parameterTypesAndCallback = new Object[parameterTypes.size() + 1];
-                    for (int i = 0; i < parameterTypes.size(); i++) {
-                        parameterTypesAndCallback[i] = parameterTypes.get(i);
-                    }
+                if (isHookConstructor) {
+                    DexposedBridge.hookAllConstructors(lintClass, hook);
                 } else {
-                    parameterTypesAndCallback = new Object[1];
-                }
-
-                parameterTypesAndCallback[parameterTypesAndCallback.length - 1] = new XC_MethodHook() {
-                    @Override
-                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                        super.beforeHookedMethod(param);
-                        Loge(TAG, "====================================================================================================================");
-                        Loge(TAG, "Hooked Message:" + message);
-                        Loge(TAG, "Hooked Method:" + className + "." + methodName);
-                        String parameter = Arrays.toString(param.args);
-                        Loge(TAG, "Hooked Method Parameter:" + parameter);
-                        if (parameter != null && filter != null && parameter.contains(filter)) {
-                            Loge(TAG, "Hooked Method Filter:" + filter);
+                    Object[] parameterTypesAndCallback;
+                    if (parameterTypes != null && parameterTypes.size() > 0) {
+                        parameterTypesAndCallback = new Object[parameterTypes.size() + 1];
+                        for (int i = 0; i < parameterTypes.size(); i++) {
+                            parameterTypesAndCallback[i] = parameterTypes.get(i);
                         }
-                        Loge(TAG, "Hooked Method Stack", new Throwable());
-                        Loge(TAG, "====================================================================================================================");
+                    } else {
+                        parameterTypesAndCallback = new Object[1];
                     }
-                };
-                DexposedBridge.findAndHookMethod(lintClass, methodName, parameterTypesAndCallback);
+                    parameterTypesAndCallback[parameterTypesAndCallback.length - 1] = hook;
+                    DexposedBridge.findAndHookMethod(lintClass, methodName, parameterTypesAndCallback);
+                }
             } catch (Exception e) {
                 Loge(TAG, "hookPrivacyMethod Exception:" + e);
             }

@@ -23,5 +23,15 @@
     "className": "android.os.Build",
     "methodName": "getSerial",
     "message": "获取getSerial"
+  },
+  {
+    "className": "com.google.android.gms.ads.identifier.AdvertisingIdClient$Info",
+    "methodName": "getId",
+    "message": "获取AAID"
+  },
+  {
+    "className": "com.google.android.gms.ads.identifier.AdvertisingIdClient",
+    "hookConstructor": true,
+    "message": "可能获取AAID"
   }
 ]

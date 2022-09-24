@@ -7,6 +7,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:unique_ids/unique_ids.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String androidId = 'Unknown';
   String imei = 'Unknown';
+  String aaid = 'Unknown';
 
   @override
   void initState() {
@@ -43,6 +45,11 @@ class _MyAppState extends State<MyApp> {
         setState(() {});
       }
     });
+
+    UniqueIds.adId.then((value) {
+      aaid = value ?? "unknown";
+      setState(() {});
+    });
   }
 
   @override
@@ -57,6 +64,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('androidId is : $androidId\n'),
               Text('imei is : $imei\n'),
+              Text('aaid is : $aaid\n'),
             ],
           ),
         ),

@@ -16,8 +16,6 @@
 
 package me.weishu.epic.art;
 
-import static com.taobao.android.dexposed.utility.Debug.addrHex;
-
 import android.util.Log;
 
 import com.taobao.android.dexposed.DeviceCheck;
@@ -28,6 +26,8 @@ import com.taobao.android.dexposed.utility.Unsafe;
 import java.lang.reflect.Member;
 
 import de.robv.android.xposed.XposedHelpers;
+
+import static com.taobao.android.dexposed.utility.Debug.addrHex;
 
 
 public final class EpicNative {

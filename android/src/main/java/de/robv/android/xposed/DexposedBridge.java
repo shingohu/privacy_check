@@ -19,8 +19,6 @@
 
 package de.robv.android.xposed;
 
-import static de.robv.android.xposed.XposedHelpers.getIntField;
-
 import android.app.AndroidAppHelper;
 import android.os.Build;
 import android.util.Log;
@@ -43,6 +41,8 @@ import java.util.Set;
 import me.weishu.epic.art.Epic;
 import me.weishu.epic.art.method.ArtMethod;
 import me.weishu.reflection.Reflection;
+
+import static de.robv.android.xposed.XposedHelpers.getIntField;
 
 public final class DexposedBridge {
 

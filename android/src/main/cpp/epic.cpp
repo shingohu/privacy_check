@@ -225,9 +225,9 @@ jboolean epic_cacheflush(JNIEnv *env, jclass, jlong addr, jlong len) {
 }
 
 void epic_MakeInitializedClassVisibilyInitialized(JNIEnv *env, jclass, jlong self) {
-  if (api_level >= 30 && ClassLinker_MakeInitializedClassesVisiblyInitialized_ && ArtHelper::getClassLinker()) {
-    ClassLinker_MakeInitializedClassesVisiblyInitialized_(ArtHelper::getClassLinker(), reinterpret_cast<void*>(self), true);
-  }
+    if (api_level >= 30 && ClassLinker_MakeInitializedClassesVisiblyInitialized_ && ArtHelper::getClassLinker()) {
+        ClassLinker_MakeInitializedClassesVisiblyInitialized_(ArtHelper::getClassLinker(), reinterpret_cast<void*>(self), true);
+    }
 }
 
 void epic_memcpy(JNIEnv *env, jclass, jlong src, jlong dest, jint length) {
@@ -296,8 +296,10 @@ jobject epic_getobject(JNIEnv *env, jclass clazz, jlong self, jlong address) {
     env->GetJavaVM(&vm);
     LOGV("java vm: %p, self: %p, address: %p", vm, (void*) self, (void*) address);
     jobject object = addWeakGloablReference(vm, (void *) self, (void *) address);
+    jobject new_local_object = env->NewLocalRef(object);
+    env->DeleteWeakGlobalRef(object);
 
-    return object;
+    return new_local_object;
 }
 
 jlong epic_getMethodAddress(JNIEnv *env, jclass clazz, jobject method) {
